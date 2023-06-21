@@ -1,5 +1,5 @@
 import express from 'express'; 
-import { productRouter } from './routers/product.router.js'
+import { productRouter } from './routers/product.route.js'
 import BrandRouter from './routers/brand.router.js'
 
 
