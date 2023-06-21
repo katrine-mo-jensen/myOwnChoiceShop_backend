@@ -1,0 +1,24 @@
+{
+  "name": "myownchoiceshop_backend",
+  "version": "1.0.0",
+  "description": "Backend of code monkey's my own choice shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katrine-mo-jensen/myOwnChoiceShop_backend.git"
+  },
+  "author": "Katrine & Cæcilie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katrine-mo-jensen/myOwnChoiceShop_backend/issues"
+  },
+  "homepage": "https://github.com/katrine-mo-jensen/myOwnChoiceShop_backend#readme",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}
