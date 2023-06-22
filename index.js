@@ -1,6 +1,6 @@
 import express from 'express';
 import productRouter from './routers/product.router.js';
-import BrandRouter from './routers/brand.router.js';
+import brandRouter from './routers/brand.router.js';
 import { router as InitRouter } from './routers/init.sequelize.route.js';
 
 import dotenv from 'dotenv';
@@ -10,9 +10,18 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(productRouter);
-app.use(BrandRouter);
+app.use('/product', productRouter); // Use a path prefix for product routes
+app.use('/brand', brandRouter); // Use a path prefix for brand routes
 app.use(InitRouter);
+
+
+app.get("/", (req, res) => {
+  res.send("Hej verden, her er jeg!");
+});
+
+app.get("/about", (req, res) => {
+  res.send("Læs mere om min Node.js app!");
+});
 
 // Handle errors for routes that are not found
 app.use((req, res) => {
