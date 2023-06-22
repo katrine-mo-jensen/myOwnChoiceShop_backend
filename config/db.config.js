@@ -1,3 +1,4 @@
+
 import mysql from 'mysql2'
 import dotenv from 'dotenv'
 
@@ -13,3 +14,4 @@ const db = mysql.createConnection({
 db.connect()
 
 export default db
+

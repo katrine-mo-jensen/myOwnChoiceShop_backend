@@ -1,5 +1,5 @@
-// import sequelize from '../config/sequelize.config.js'
-import { DataTypes, Model } from 'sequelize'
+import { sequelize } from '../config/db.sequelize.js';
+import { DataTypes, Model } from 'sequelize';
 
 class BrandModel extends Model{}
 
