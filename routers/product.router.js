@@ -35,4 +35,4 @@ productRouter.delete('/products/:id([0-9]*)', (req, res) => {
   })
 
 
-export { productRouter }
+export default { productRouter }
