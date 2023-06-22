@@ -1,6 +1,6 @@
 
 import express from 'express'; 
-import { productRouter } from './routers/product.route.js'
+import { productRouter } from './routers/product.router.js'
 import { BrandRouter } from './routers/brand.router.js'
 import { router as InitRouter } from './routers/init.sequelize.route.js'
 
@@ -17,17 +17,6 @@ app.use(productRouter);
 app.use(BrandRouter);
 app.use(InitRouter);
 
-
-
-// Deklarerer app var med ekspress objekt
-const app = express()
-
-
-// Udvider app så vi kan læse form body data
-app.use(express.urlencoded({ extended: true }))
-
-// Anvender eksterne routes
-app.use(productRouter)
 
 // Skriver fejl hvis route ikke findes
 app.use((req, res) => {
