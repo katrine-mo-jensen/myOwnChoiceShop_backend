@@ -1,8 +1,10 @@
-import { Sequelize } from "sequelize"; 
-import dotenv from 'dotenv' 
+
+import { Sequelize } from 'sequelize'
+import dotenv from 'dotenv'
 dotenv.config()
 
-const sequelize = new Sequelize(
+const sequelize = new Sequelize (
+
     process.env.DB_NAME,
     process.env.DB_USER,
     process.env.DB_PASSWORD,
@@ -11,6 +13,9 @@ const sequelize = new Sequelize(
         dialect: 'mysql'
     }
 
+
 )
 
 export default { sequelize }
+lize }
+
