@@ -13,7 +13,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 
 app.use(productRouter);
-app.use(BrandRouter),
+app.use(BrandRouter);
 app.use(InitRouter);
 
 
