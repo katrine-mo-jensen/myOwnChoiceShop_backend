@@ -1,9 +1,9 @@
-import { sequelize } from "../config/db.sequelize.js";
-import { Sequelize, DataTypes, Model } from "sequelize";
+import db from "../config/db.sequelize.js";
+import { DataTypes, Model } from "sequelize";
 
-class productModel extends Model {}
+class ProductModel extends Model {}
 
-productModel.init(
+ProductModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -26,13 +26,11 @@ productModel.init(
     },
   },
   {
-    sequelize,
+    sequelize: db.sequelize, // Use the sequelize property from the db object
     modelName: "product",
     freezeTableName: true,
     underscored: true,
-    // createdAt: 'created',
-    // updatedAt: false
   }
 );
 
-export default productModel;
+export default ProductModel;
