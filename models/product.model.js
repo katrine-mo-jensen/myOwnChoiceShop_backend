@@ -26,7 +26,7 @@ ProductModel.init(
     },
   },
   {
-    sequelize: db.sequelize, // Use the sequelize property from the db object
+    sequelize: db.sequelize, 
     modelName: "product",
     freezeTableName: true,
     underscored: true,
