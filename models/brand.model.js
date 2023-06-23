@@ -22,4 +22,3 @@ BrandModel.init({
 });
 
 export default BrandModel;
-

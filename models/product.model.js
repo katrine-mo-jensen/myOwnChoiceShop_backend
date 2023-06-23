@@ -1,9 +1,11 @@
-import { sequelize } from "../config/db.sequelize.js";
+import sequelize from "../config/db.sequelize.js";
+
+
 import { Sequelize, DataTypes, Model } from "sequelize";
 
-class productModel extends Model {}
+class ProductModel extends Model {}
 
-productModel.init(
+ProductModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,23 +18,14 @@ productModel.init(
       allowNull: false,
       defaultValue: "Untitled",
     },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    artist_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+
   },
   {
-    sequelize,
-    modelName: "product",
+    sequelize, 
+    modelName: "products",
     freezeTableName: true,
     underscored: true,
-    // createdAt: 'created',
-    // updatedAt: false
   }
 );
 
-export default productModel;
+export default ProductModel;
