@@ -20,4 +20,4 @@ BrandRouter.delete('/brand/:id([0-9]*)', (req, res) => {
     controller.delete(req, res)
 })
 
-export default BrandRouter
+export { BrandRouter };

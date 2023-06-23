@@ -14,6 +14,13 @@ app.use(productRouter); // Use a path prefix for product routes
 app.use(brandRouter); // Use a path prefix for brand routes
 app.use(InitRouter);
 
+app.get("/", (req, res) => {
+    res.send("Hej verden. Her er jeg!");
+  });
+  
+  app.get("/about", (req, res) => {
+    res.send("Læs mere om min Node.js app!");
+  });
 
 app.get("/", (req, res) => {
   res.send("Hej verden, her er jeg!");
