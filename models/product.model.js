@@ -1,7 +1,7 @@
-import sequelize from "../config/db.sequelize.js";
+import {sequelize} from "../config/db.sequelize.js";
 
 
-import { Sequelize, DataTypes, Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
 class ProductModel extends Model {}
 
