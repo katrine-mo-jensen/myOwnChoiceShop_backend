@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import db from '../config/db.sequelize.js';
+import { sequelize } from "../config/db.sequelize.js";
 
 class BrandModel extends Model {}
 
@@ -15,10 +15,11 @@ BrandModel.init({
     allowNull: false
   }
 }, {
-  sequelize: db.sequelize, // Use the sequelize instance from db.sequelize
+  sequelize,
   modelName: 'brand',
   freezeTableName: true,
   underscored: true
 });
 
 export default BrandModel;
+

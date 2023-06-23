@@ -17,6 +17,13 @@ app.use(productRouter);
 app.use(BrandRouter);
 app.use(InitRouter);
 
+app.get("/", (req, res) => {
+    res.send("Hej verden. Her er jeg!");
+  });
+  
+  app.get("/about", (req, res) => {
+    res.send("Læs mere om min Node.js app!");
+  });
 
 // Skriver fejl hvis route ikke findes
 app.use((req, res) => {
