@@ -1,33 +1,68 @@
+import productModel from "../models/product.model.js";
+
+const model = new productModel
+
 class productController {
 	constructor() {
 		console.log('Class productController instantiated');
 	}
 
-	list = () => {
+	list = async (req, res) => {
 		console.log('Kører list metode');
-		return true
+		const result = await model.findAll({
+			// control fx. limit, order
+		})
+		res.json(result)
+		// return true
 	}
-
-	details = () => {
+	// details
+	details = async (req, res) => {
 		console.log('Kører details metode');
-		return true
+		const result = await model.findAll({
+			where: { id: req.params.id} 
+		})
+		res.json(...result)
+		// return true
 	}
 
 	// create
-	create = () => {
+	create = async (req, res) => {
 		console.log('Kører create metode');
-		return true
+		const { item_number, title, description, stock, taste_id, brand_id, type_id, size, img, price} = req.body; 
+		
+		if(item_number && title && description && stock && taste_id && brand_id && type_id && size && img && price) {
+			const model = await productModel.create(req.body)
+			return res.json({newid: model.id})
+		} else  {
+			res.send(418)
+		}
+		// return true
 	}
 	// update
-	update = () => {
+	update = async (req, res) => {
 		console.log('Kører update metode');
-		return true
+		const { item_number, title, description, stock, taste_id, brand_id, type_id, size, img, price, id} = req.body; 
+		
+		if(item_number && title && description && stock && taste_id && brand_id && type_id && size && img && price && id) {
+			const model = await productModel.update(req.body, { where: { id: id }})
+			return res.json({status : true })
+		} else {
+			res.send(418)
+		}
+		// return true
 	}
 
 	// delete
-	delete = () => {
+	delete = async (req, res) => {
 		console.log('Kører delete metode');
-		return true
+		try {
+			await productModel.destroy({ where: { id: req.params.id }})
+			res.sendStatus(200)
+		} 
+		catch(err) {
+			res.send(err)
+		}
+		// return true
 	}
 }
 

@@ -1,8 +1,8 @@
 import express from 'express';
-import ProductController from '../controllers/product.controller.js';
+import productController from '../controllers/product.controller.js';
 
 const productRouter = express.Router();
-const product = new ProductController();
+const product = new productController();
 
 productRouter.get('/products', (req, res) => {
   return product.list(req, res);
