@@ -1,4 +1,4 @@
-import db from '../config/db.sequelize.js';
+import sequelize from '../config/db.sequelize.js';
 import { DataTypes, Model } from 'sequelize';
 
 class BrandModel extends Model {}
@@ -17,7 +17,7 @@ BrandModel.init(
     },
   },
   {
-    sequelize: db.sequelize, // Use the sequelize property from the db object
+    sequelize, // Use the sequelize property from the db object
     modelName: 'brand',
     freezeTableName: true,
     underscored: true,
