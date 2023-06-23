@@ -10,8 +10,8 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/product', productRouter); // Use a path prefix for product routes
-app.use('/brand', brandRouter); // Use a path prefix for brand routes
+app.use(productRouter); // Use a path prefix for product routes
+app.use(brandRouter); // Use a path prefix for brand routes
 app.use(InitRouter);
 
 
