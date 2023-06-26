@@ -1,4 +1,4 @@
-import TypeModel from '../models/brand.model.js'
+import TypeModel from '../models/type.model.js'
 import ProductModel from '../models/product.model.js'
 
 TypeModel.hasMany(ProductModel)
@@ -9,7 +9,7 @@ class TypeController {
     list = async (req, res) => {
         let { limit, attributes } = req.query
         limit = parseInt(limit) || 1000
-        const attr = attributes ? attributes.split(',') : new Array('id', 'name')
+        const attr = attributes ? attributes.split(',') : new Array('id', 'type')
 
 
         const result = await TypeModel.findAll({

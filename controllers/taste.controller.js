@@ -1,4 +1,4 @@
-import TasteModel from '../models/brand.model.js'
+import TasteModel from '../models/taste.model.js'
 import ProductModel from '../models/product.model.js'
 
 TasteModel.hasMany(ProductModel)
@@ -9,7 +9,7 @@ class TasteController {
     list = async (req, res) => {
         let { limit, attributes } = req.query
         limit = parseInt(limit) || 1000
-        const attr = attributes ? attributes.split(',') : new Array('id', 'name')
+        const attr = attributes ? attributes.split(',') : new Array('id', 'taste')
 
 
         const result = await TasteModel.findAll({
