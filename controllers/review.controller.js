@@ -37,7 +37,7 @@ class ReviewController {
   details = async (req, res) => {
     console.log("Kører details metode");
     const { id } = req.params || 0;
-    const result = await model.findOne({
+    const result = await ReviewModel.findOne({
       attributes: [
         "id",
         "date",
@@ -49,7 +49,7 @@ class ReviewController {
       ],
       where: { id: id },
     });
-    res.json(...result);
+    res.json(result);
     // return true
   };
 
@@ -73,8 +73,8 @@ class ReviewController {
       rating &&
       product_id 
     ) {
-      const model = await model.create(req.body);
-      res.json({ newid: model.id });
+      const model = await ReviewModel.create(req.body);
+      res.json({ newId: model.id });
     } else {
       res.sendStatus(418);
     }
@@ -101,7 +101,7 @@ class ReviewController {
       rating ||
       product_id
     ) {
-      const model = await model.update(req.body, {
+      const model = await ReviewModel.update(req.body, {
         where: { id: id },
       });
       res.json({
@@ -117,7 +117,7 @@ class ReviewController {
   delete = async (req, res) => {
     console.log("Kører delete metode");
     try {
-      await model.destroy({ where: { id: req.params.id } });
+      await ReviewModel.destroy({ where: { id: req.params.id } });
       res.sendStatus(200);
     } catch (err) {
       res.send(err);

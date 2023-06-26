@@ -16,7 +16,7 @@ ProductRouter.post('/products', (req, res) => {
   return product.create(req, res);
 });
 
-ProductRouter.put('/products', (req, res) => {
+ProductRouter.put('/products/:id([0-9]*)', (req, res) => {
   return product.update(req, res);
 });
 
@@ -24,4 +24,4 @@ ProductRouter.delete('/products/:id([0-9]*)', (req, res) => {
   return product.delete(req, res);
 });
 
-export default ProductRouter;
+export {ProductRouter};

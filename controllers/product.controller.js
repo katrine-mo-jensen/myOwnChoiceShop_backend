@@ -5,9 +5,7 @@ import ReviewModel from "../models/review.model.js";
 ProductModel.hasMany(ReviewModel)
 ReviewModel.belongsTo(ProductModel)
 
-const model = new ProductModel();
-
-class productController {
+class ProductController {
   constructor() {
     console.log("Class productController instantiated");
   }
@@ -27,7 +25,7 @@ class productController {
           "price"
         );
 
-    const result = await productModel.findAll({
+    const result = await ProductModel.findAll({
       attributes: attr,
       limit: limit,
     });
@@ -37,7 +35,7 @@ class productController {
   details = async (req, res) => {
     console.log("Kører details metode");
     const { id } = req.params || 0;
-    const result = await model.findOne({
+    const result = await ProductModel.findOne({
       attributes: [
         "id",
         "title",
@@ -49,7 +47,7 @@ class productController {
       ],
       where: { id: id },
     });
-    res.json(...result);
+    res.json(result);
     // return true
   };
 
@@ -81,7 +79,7 @@ class productController {
       img &&
       price
     ) {
-      const model = await model.create(req.body);
+      const model = await ProductModel.create(req.body);
       res.json({ newid: model.id });
     } else {
       res.sendStatus(418);
@@ -117,7 +115,7 @@ class productController {
       img ||
       price
     ) {
-      const model = await model.update(req.body, {
+      const model = await ProductModel.update(req.body, {
         where: { id: id },
       });
       res.json({
@@ -133,7 +131,7 @@ class productController {
   delete = async (req, res) => {
     console.log("Kører delete metode");
     try {
-      await model.destroy({ where: { id: req.params.id } });
+      await ProductModel.destroy({ where: { id: req.params.id } });
       res.sendStatus(200);
     } catch (err) {
       res.send(err);
@@ -142,4 +140,4 @@ class productController {
   };
 }
 
-export default productController;
+export default ProductController;

@@ -1,4 +1,4 @@
-import UserModel from "../models/product.model.js";
+import UserModel from "../models/user.model.js";
 
 const model = new UserModel();
 
@@ -30,7 +30,7 @@ class UserController {
   details = async (req, res) => {
     console.log("Kører details metode");
     const { id } = req.params || 0;
-    const result = await model.findOne({
+    const result = await UserModel.findOne({
       attributes: [
         "id",
           "username",
@@ -45,7 +45,7 @@ class UserController {
       ],
       where: { id: id },
     });
-    res.json(...result);
+    res.json(result);
     // return true
   };
 
@@ -76,7 +76,7 @@ class UserController {
       city &&
       phone_nr
     ) {
-      const model = await model.create(req.body);
+      const model = await UserModel.create(req.body);
       res.json({ newid: model.id });
     } else {
       res.sendStatus(418);
@@ -110,7 +110,7 @@ class UserController {
       city ||
       phone_nr
     ) {
-      const model = await model.update(req.body, {
+      const model = await UserModel.update(req.body, {
         where: { id: id },
       });
       res.json({
@@ -126,7 +126,7 @@ class UserController {
   delete = async (req, res) => {
     console.log("Kører delete metode");
     try {
-      await model.destroy({ where: { id: req.params.id } });
+      await UserModel.destroy({ where: { id: req.params.id } });
       res.sendStatus(200);
     } catch (err) {
       res.send(err);

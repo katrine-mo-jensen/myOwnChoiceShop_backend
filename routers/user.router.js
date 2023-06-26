@@ -13,7 +13,7 @@ UserRouter.get('/user/:id([0-9]*)', (req, res) => {
 UserRouter.post('/user', (req, res) => {
     controller.create(req, res)
 })
-UserRouter.put('/user', (req, res) => {
+UserRouter.put('/user/:id([0-9]*)', (req, res) => {
     controller.update(req, res)
 })
 UserRouter.delete('/user/:id([0-9]*)', (req, res) => {
