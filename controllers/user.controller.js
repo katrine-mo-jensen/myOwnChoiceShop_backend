@@ -1,15 +1,10 @@
-import ProductModel from "../models/product.model.js";
-import ReviewModel from "../models/review.model.js";
+import UserModel from "../models/product.model.js";
 
-// relations
-ProductModel.hasMany(ReviewModel)
-ReviewModel.belongsTo(ProductModel)
+const model = new UserModel();
 
-const model = new ProductModel();
-
-class productController {
+class UserController {
   constructor() {
-    console.log("Class productController instantiated");
+    console.log("Class UserController instantiated");
   }
 
   list = async (req, res) => {
@@ -19,15 +14,13 @@ class productController {
       ? attributes.split(",")
       : new Array(
           "id",
-          "title",
-          "description",
-          "size",
-          "img",
-          "stock",
-          "price"
+          "username",
+          "firstname",
+          "lastname",
+          "email"
         );
 
-    const result = await productModel.findAll({
+    const result = await UserModel.findAll({
       attributes: attr,
       limit: limit,
     });
@@ -40,12 +33,15 @@ class productController {
     const result = await model.findOne({
       attributes: [
         "id",
-        "title",
-        "description",
-        "size",
-        "img",
-        "stock",
-        "price",
+          "username",
+          "password",
+          "firstname",
+          "lastname",
+          "email",
+          "address",
+          "zipcode",
+          "city",
+          "phone_nr"
       ],
       where: { id: id },
     });
@@ -57,29 +53,28 @@ class productController {
   create = async (req, res) => {
     console.log("Kører create metode");
     const {
-      item_number,
-      title,
-      description,
-      stock,
-      taste_id,
-      brand_id,
-      type_id,
-      size,
-      img,
-      price,
+      username,
+      password,
+      firstname,
+      lastname,
+      email,
+      address,
+      zipcode,
+      city,
+      phone_nr,
+  
     } = req.body;
 
     if (
-      item_number &&
-      title &&
-      description &&
-      stock &&
-      taste_id &&
-      brand_id &&
-      type_id &&
-      size &&
-      img &&
-      price
+      username &&
+      password &&
+      firstname &&
+      lastname &&
+      email &&
+      address &&
+      zipcode &&
+      city &&
+      phone_nr
     ) {
       const model = await model.create(req.body);
       res.json({ newid: model.id });
@@ -93,35 +88,33 @@ class productController {
     console.log("Kører update metode");
     const { id } = req.params || 0;
     const {
-      item_number,
-      title,
-      description,
-      stock,
-      taste_id,
-      brand_id,
-      type_id,
-      size,
-      img,
-      price,
+      username,
+      password,
+      firstname,
+      lastname,
+      email,
+      address,
+      zipcode,
+      city,
+      phone_nr,
     } = req.body;
 
     if (
-      item_number ||
-      title ||
-      description ||
-      stock ||
-      taste_id ||
-      brand_id ||
-      type_id ||
-      size ||
-      img ||
-      price
+      username ||
+      password ||
+      firstname ||
+      lastname ||
+      email ||
+      address ||
+      zipcode ||
+      city ||
+      phone_nr
     ) {
       const model = await model.update(req.body, {
         where: { id: id },
       });
       res.json({
-        msg: "Product updated",
+        msg: "User updated",
       });
     } else {
       res.sendStatus(418);
@@ -142,4 +135,4 @@ class productController {
   };
 }
 
-export default productController;
+export default UserController;

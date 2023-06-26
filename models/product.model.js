@@ -1,14 +1,14 @@
 import {sequelize} from "../config/db.sequelize.js";
-import { Sequelize, DataTypes, Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
-class productModel extends Model {}
+class ProductModel extends Model {}
 
 // In diagram there are a datatype; varchar. Unsure what it is in VS code? 
 
-productModel.init(
+ProductModel.init(
   {
     id: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
@@ -44,7 +44,7 @@ productModel.init(
       allowNull: false,
     },
     size: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     img: {
@@ -64,4 +64,4 @@ productModel.init(
   }
 );
 
-export default productModel;
+export default ProductModel;

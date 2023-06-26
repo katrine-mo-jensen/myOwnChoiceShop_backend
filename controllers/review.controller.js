@@ -1,15 +1,15 @@
-import ProductModel from "../models/product.model.js";
+import UserModel from "../models/user.model.js";
 import ReviewModel from "../models/review.model.js";
 
 // relations
-ProductModel.hasMany(ReviewModel)
-ReviewModel.belongsTo(ProductModel)
+UserModel.hasMany(ReviewModel)
+ReviewModel.belongsTo(UserModel)
 
-const model = new ProductModel();
+const model = new ReviewModel();
 
-class productController {
+class ReviewController {
   constructor() {
-    console.log("Class productController instantiated");
+    console.log("Class ReviewController instantiated");
   }
 
   list = async (req, res) => {
@@ -19,15 +19,15 @@ class productController {
       ? attributes.split(",")
       : new Array(
           "id",
+          "date",
+          "user_id",
+          "comment",
           "title",
-          "description",
-          "size",
-          "img",
-          "stock",
-          "price"
+          "rating",
+          "product_id"
         );
 
-    const result = await productModel.findAll({
+    const result = await ReviewModel.findAll({
       attributes: attr,
       limit: limit,
     });
@@ -40,12 +40,12 @@ class productController {
     const result = await model.findOne({
       attributes: [
         "id",
+        "date",
+        "user_id",
+        "comment",
         "title",
-        "description",
-        "size",
-        "img",
-        "stock",
-        "price",
+        "rating",
+        "product_id"
       ],
       where: { id: id },
     });
@@ -57,29 +57,21 @@ class productController {
   create = async (req, res) => {
     console.log("Kører create metode");
     const {
-      item_number,
+      date,
+      user_id,
+      comment,
       title,
-      description,
-      stock,
-      taste_id,
-      brand_id,
-      type_id,
-      size,
-      img,
-      price,
+      rating,
+      product_id,
     } = req.body;
 
     if (
-      item_number &&
+      date &&
+      user_id &&
+      comment &&
       title &&
-      description &&
-      stock &&
-      taste_id &&
-      brand_id &&
-      type_id &&
-      size &&
-      img &&
-      price
+      rating &&
+      product_id 
     ) {
       const model = await model.create(req.body);
       res.json({ newid: model.id });
@@ -93,35 +85,27 @@ class productController {
     console.log("Kører update metode");
     const { id } = req.params || 0;
     const {
-      item_number,
+      date,
+      user_id,
+      comment,
       title,
-      description,
-      stock,
-      taste_id,
-      brand_id,
-      type_id,
-      size,
-      img,
-      price,
+      rating,
+      product_id,
     } = req.body;
 
     if (
-      item_number ||
+      date ||
+      user_id ||
+      comment ||
       title ||
-      description ||
-      stock ||
-      taste_id ||
-      brand_id ||
-      type_id ||
-      size ||
-      img ||
-      price
+      rating ||
+      product_id
     ) {
       const model = await model.update(req.body, {
         where: { id: id },
       });
       res.json({
-        msg: "Product updated",
+        msg: "review updated",
       });
     } else {
       res.sendStatus(418);
@@ -142,4 +126,4 @@ class productController {
   };
 }
 
-export default productController;
+export default ReviewController;
