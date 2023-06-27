@@ -1,4 +1,4 @@
-import express from 'express';
+
 import {ProductRouter} from './routers/product.router.js';
 import {BrandRouter} from './routers/brand.router.js';
 import {InitRouter } from './routers/init.sequelize.route.js';
