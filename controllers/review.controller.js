@@ -1,13 +1,15 @@
-import ProductModel from "../models/product.model.js";
+import UserModel from "../models/user.model.js";
 import ReviewModel from "../models/review.model.js";
 
 // relations
-ProductModel.hasMany(ReviewModel)
-ReviewModel.belongsTo(ProductModel)
+UserModel.hasMany(ReviewModel)
+ReviewModel.belongsTo(UserModel)
 
-class ProductController {
+const model = new ReviewModel();
+
+class ReviewController {
   constructor() {
-    console.log("Class productController instantiated");
+    console.log("Class ReviewController instantiated");
   }
 
   list = async (req, res) => {
@@ -17,15 +19,15 @@ class ProductController {
       ? attributes.split(",")
       : new Array(
           "id",
+          "date",
+          "user_id",
+          "comment",
           "title",
-          "description",
-          "size",
-          "img",
-          "stock",
-          "price"
+          "rating",
+          "product_id"
         );
 
-    const result = await ProductModel.findAll({
+    const result = await ReviewModel.findAll({
       attributes: attr,
       limit: limit,
     });
@@ -35,15 +37,15 @@ class ProductController {
   details = async (req, res) => {
     console.log("Kører details metode");
     const { id } = req.params || 0;
-    const result = await ProductModel.findOne({
+    const result = await ReviewModel.findOne({
       attributes: [
         "id",
+        "date",
+        "user_id",
+        "comment",
         "title",
-        "description",
-        "size",
-        "img",
-        "stock",
-        "price",
+        "rating",
+        "product_id"
       ],
       where: { id: id },
     });
@@ -55,32 +57,24 @@ class ProductController {
   create = async (req, res) => {
     console.log("Kører create metode");
     const {
-      item_number,
+      date,
+      user_id,
+      comment,
       title,
-      description,
-      stock,
-      taste_id,
-      brand_id,
-      type_id,
-      size,
-      img,
-      price,
+      rating,
+      product_id,
     } = req.body;
 
     if (
-      item_number &&
+      date &&
+      user_id &&
+      comment &&
       title &&
-      description &&
-      stock &&
-      taste_id &&
-      brand_id &&
-      type_id &&
-      size &&
-      img &&
-      price
+      rating &&
+      product_id 
     ) {
-      const model = await ProductModel.create(req.body);
-      res.json({ newid: model.id });
+      const model = await ReviewModel.create(req.body);
+      res.json({ newId: model.id });
     } else {
       res.sendStatus(418);
     }
@@ -91,35 +85,27 @@ class ProductController {
     console.log("Kører update metode");
     const { id } = req.params || 0;
     const {
-      item_number,
+      date,
+      user_id,
+      comment,
       title,
-      description,
-      stock,
-      taste_id,
-      brand_id,
-      type_id,
-      size,
-      img,
-      price,
+      rating,
+      product_id,
     } = req.body;
 
     if (
-      item_number ||
+      date ||
+      user_id ||
+      comment ||
       title ||
-      description ||
-      stock ||
-      taste_id ||
-      brand_id ||
-      type_id ||
-      size ||
-      img ||
-      price
+      rating ||
+      product_id
     ) {
-      const model = await ProductModel.update(req.body, {
+      const model = await ReviewModel.update(req.body, {
         where: { id: id },
       });
       res.json({
-        msg: "Product updated",
+        msg: "review updated",
       });
     } else {
       res.sendStatus(418);
@@ -131,7 +117,7 @@ class ProductController {
   delete = async (req, res) => {
     console.log("Kører delete metode");
     try {
-      await ProductModel.destroy({ where: { id: req.params.id } });
+      await ReviewModel.destroy({ where: { id: req.params.id } });
       res.sendStatus(200);
     } catch (err) {
       res.send(err);
@@ -140,4 +126,4 @@ class ProductController {
   };
 }
 
-export default ProductController;
+export default ReviewController;

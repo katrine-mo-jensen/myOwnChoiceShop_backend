@@ -1,25 +1,24 @@
-
 import {sequelize} from "../config/db.sequelize.js";
 import { DataTypes, Model } from "sequelize";
 
-class BrandModel extends Model {}
+class TasteModel extends Model {}
 
-BrandModel.init({
+TasteModel.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
-  name: {
+  taste: {
     type: DataTypes.STRING,
     allowNull: false
   }
 }, {
   sequelize,
-  modelName: 'brand',
+  modelName: 'taste',
   freezeTableName: true,
   underscored: true
 });
 
-export default BrandModel;
+export default TasteModel;

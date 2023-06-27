@@ -1,8 +1,11 @@
-import express from 'express';
-import productRouter from './routers/product.router.js';
-import brandRouter from './routers/brand.router.js';
-import AuthRouter from './routers/auth.router.js';
-import { router as InitRouter } from './routers/init.sequelize.route.js';
+
+import {ProductRouter} from './routers/product.router.js';
+import {BrandRouter} from './routers/brand.router.js';
+import {InitRouter } from './routers/init.sequelize.route.js';
+import {UserRouter} from './routers/user.router.js';
+import {TypeRouter} from './routers/type.router.js';
+import {TasteRouter} from './routers/taste.router.js';
+import {ReviewRouter} from './routers/review.router.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -11,10 +14,21 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(productRouter); // Use a path prefix for product routes
-app.use(brandRouter); // Use a path prefix for brand routes
+app.use(ProductRouter); // Use a path prefix for product routes
+app.use(BrandRouter); // Use a path prefix for brand routes
 app.use(InitRouter);
-app.use(AuthRouter);
+app.use(UserRouter);
+app.use(TypeRouter);
+app.use(TasteRouter);
+app.use(ReviewRouter);
+
+app.get("/", (req, res) => {
+    res.send("Hej verden. Her er jeg!");
+  });
+  
+  app.get("/about", (req, res) => {
+    res.send("Læs mere om min Node.js app!");
+  });
 
 app.get("/", (req, res) => {
   res.send("Hej verden, her er jeg!");
