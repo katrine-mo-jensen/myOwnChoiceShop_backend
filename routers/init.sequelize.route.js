@@ -1,5 +1,5 @@
 import express from 'express'
-import { sequelize } from '../config/db.sequelize.js';
+import sequelize from '../config/db.sequelize.js';
 
 const InitRouter = express.Router();
 
