@@ -7,6 +7,7 @@ import {UserRouter} from './routers/user.router.js';
 import {TypeRouter} from './routers/type.router.js';
 import {TasteRouter} from './routers/taste.router.js';
 import {ReviewRouter} from './routers/review.router.js';
+import AuthRouter from './routers/auth.router.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(UserRouter);
 app.use(TypeRouter);
 app.use(TasteRouter);
 app.use(ReviewRouter);
+app.use(AuthRouter);
 
 app.get("/", (req, res) => {
     res.send("Hej verden. Her er jeg!");
