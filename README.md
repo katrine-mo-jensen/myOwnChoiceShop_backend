@@ -10,3 +10,5 @@ I den anden del af opgaven skulle vi teste vores API i en frontend løsning. Den
 Opgaven afsluttes med en gruppe evaluering hvor I skal vurdere hinandens og jeres egen indsats i samarbejdet.
 
 Dokumentation med diagram: https://github.com/katrine-mo-jensen/myOwnChoiceShop_backend/wiki 
+
+Postman documentation: https://documenter.getpostman.com/view/27744126/2s93z9c3Sk 
